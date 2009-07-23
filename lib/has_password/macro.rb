@@ -13,6 +13,14 @@ module ActiveRecord
         validates_format_of :password_salt, :with => %r{^[0-9a-f]{#{@salt_length}}$}
         validates_confirmation_of :password
         
+        define_callbacks :after_password_change
+
+        after_update do |m|
+          m.instance_eval do
+            callback(:after_password_change) if password_hash_changed?
+          end
+        end
+        
         validate do |m|
           unless m.password.blank?
             HasPassword::FORBIDDEN.each do |word|

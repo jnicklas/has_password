@@ -1,4 +1,3 @@
-require File.dirname(__FILE__) + '/has_password/callbacks'
 require File.dirname(__FILE__) + '/has_password/macro'
 
 require 'digest/sha1'
@@ -21,7 +20,6 @@ module HasPassword
   def self.included(base)
     base.send :include, InstanceMethods
     base.send :extend, ClassMethods
-    base.send :extend, Callbacks
   end
   
   module InstanceMethods
