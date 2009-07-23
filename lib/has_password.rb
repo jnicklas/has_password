@@ -1,3 +1,6 @@
+require File.dirname(__FILE__) + '/has_password/callbacks'
+require File.dirname(__FILE__) + '/has_password/macro'
+
 require 'digest/sha1'
 
 module HasPassword
