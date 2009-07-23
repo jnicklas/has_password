@@ -9,8 +9,6 @@ module ActiveRecord
         # Store salt size in chars rather than bits. One hex char == 4 bits
         @salt_length = ((options[:salt_size] || 24) / 4.0).ceil
         
-        attr_protected :password_hash, :password_salt
-        
         validates_format_of :password_hash, :with => /^[0-9a-f]{40}$/
         validates_format_of :password_salt, :with => %r{^[0-9a-f]{#{@salt_length}}$}
         validates_confirmation_of :password
