@@ -1,1 +1,1 @@
-require File.dirname(__FILE__) + '/lib/has_password'
+require File.expand_path('/lib/has_password', File.dirname(__FILE__))
