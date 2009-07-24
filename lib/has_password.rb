@@ -2,6 +2,8 @@ require 'digest/sha1'
 
 module HasPassword
   
+  VERSION = "0.1"
+  
   FORBIDDEN = %w(password user system test admin)
   
   class << self

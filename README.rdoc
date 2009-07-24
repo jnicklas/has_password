@@ -1,4 +1,8 @@
-== HasPassword
+= HasPassword
+
+* http://github.com/jnicklas/has_password
+
+== DESCRIPTION:
 
 +has_password+ is a simple password-hashing abstraction for use in ActiveRecord models.
 It is designed to be as simple as possible: it deals only with password handling, not
@@ -38,3 +42,34 @@ or
 In terms of validation, it automatically <tt>validates_confirmation_of :password</tt>
 and checks supplied passwords for a few obvious silly phrases like, say, +password+ and
 +test+. Passwords are only validated if +password+ is non-blank.
+
+== INSTALL:
+
+Grab it from GitHub
+
+  sudo gem jnicklas-has_password -s http://gems.github.com
+
+== LICENSE:
+
+(The MIT License)
+
+Copyright (c) 2009 James Coglan, Jonas Nicklas
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

@@ -1,0 +1,14 @@
+History.txt
+Manifest.txt
+README.rdoc
+Rakefile
+init.rb
+lib/has_password.rb
+script/console
+script/destroy
+script/generate
+test/fixtures/schema.rb
+test/fixtures/user.rb
+test/has_password_test.rb
+test/test_has_password.rb
+test/test_helper.rb
