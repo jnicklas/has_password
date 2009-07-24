@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-  has_password :salt_size => 16
+  has_password
   
   before_validation do |m|
     m.count ||= 0

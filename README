@@ -7,12 +7,11 @@ with authentication processes, controller code, generators etc.
 To use it:
 
   class User < ActiveRecord::Base
-    has_password :salt_size => 16
+    has_password
   end
 
-Your model should have +password_hash+ and +password_salt+ fields. Hashes are 160-bit
-(40-char) SHA1 hashes and salts are random hexadecimal strings of the bit-length you
-specify (16 bits gives you 4 hex digits). Your model will gain three methods:
+Your model should have +password_hash+ and +password_salt+ fields. Hashes are 256-bit
+(64-char) SHA256 hashes. Your model will gain three methods:
 
 <tt>user.password=(pwd)</tt>: sets the hash and salt values of user from the given
 plain-text value pwd. The plain-text password is stored in +user+ while in memory but is

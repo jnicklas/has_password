@@ -5,15 +5,10 @@ module HasPassword
   FORBIDDEN = %w(password user system test admin)
   
   class << self
-    # Returns a random string of the given length
-    def random_hex(length = 8)
-      (1..length).map { |i| rand(16).to_s(16) }.join('')
-    end
-  
     # Returns the SHA1 hash of the string with the given salt
     def encrypt(string, salt = '')
-      hashable = "#{salt}#{string}"
-      Digest::SHA1.hexdigest(hashable)
+      hashable = "----#{salt}----#{string}--"
+      Digest::SHA256.hexdigest(hashable)
     end
   
     def included(base)
@@ -22,14 +17,11 @@ module HasPassword
     end
   end
   
-  def has_password(options = {})
+  def has_password
     include HasPassword::InstanceMethods
     
-    # Store salt size in chars rather than bits. One hex char == 4 bits
-    @salt_length = ((options[:salt_size] || 24) / 4.0).ceil
-    
-    validates_format_of :password_hash, :with => /^[0-9a-f]{40}$/
-    validates_format_of :password_salt, :with => %r{^[0-9a-f]{#{@salt_length}}$}
+    validates_format_of :password_hash, :with => /\A[0-9a-f]{64}\z/
+    validates_format_of :password_salt, :with => /\A[0-9a-f]{64}\z/
     validates_confirmation_of :password
     
     define_callbacks :after_password_change
@@ -66,7 +58,7 @@ module HasPassword
     def password=(pwd)
       return if pwd.blank?
       @password = pwd.to_s
-      salt = HasPassword.random_hex(self.class.salt_length)
+      salt = HasPassword.encrypt(Time.now.to_i, @password)
       self.password_salt = salt
       self.password_hash = HasPassword.encrypt(@password, salt)
     end
